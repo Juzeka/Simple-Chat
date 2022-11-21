@@ -1,0 +1,28 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}Criar sala{% endblock %}
+
+{% block body %}
+    <h2>Qual sala deseja entrar?</h2>
+    <div class="row">
+        <div class="col-10 mb-2">
+            <input class="form-control" id="room-name-input" type="text" size="10">
+        </div>
+        <div class="col mb-2">
+            <input id="room-name-submit" type="button" class="btn btn-primary" value="Entrar">
+        </div>
+    </div>
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+{% endblock %}
